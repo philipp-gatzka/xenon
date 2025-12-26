@@ -24,6 +24,8 @@ publishing {
     publications {
         create<MavenPublication>("maven") {
             from(components["java"])
+            group = project.group
+            version = project.version as String?
             pom {
                 name.set("xenon")
                 licenses {
@@ -52,8 +54,8 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/philipp-gatzka/xenon")
             credentials {
-                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
-                password = project.findProperty("gpr.key") as String? ?: System.getenv("PASSWORD")
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("GITHUB_TOKEN")
             }
         }
     }
