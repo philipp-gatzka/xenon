@@ -17,6 +17,10 @@ jobs:
           java-version: '21'
           distribution: 'temurin'
           cache: gradle
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
       - name: Release with Gradle
         run: ./gradlew release -Prelease.useAutomaticVersion=true
         env:
