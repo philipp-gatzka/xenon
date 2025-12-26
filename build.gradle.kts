@@ -1,6 +1,7 @@
 plugins {
     id("java-library")
     id("maven-publish")
+    id("net.researchgate.release") version "3.1.0"
 }
 
 java {
@@ -61,8 +62,19 @@ publishing {
     }
 }
 
+release {
+    git {
+        requireBranch.set("main")
+    }
+}
+
+
 tasks {
     test {
         useJUnitPlatform()
     }
+    afterReleaseBuild {
+        dependsOn(publish)
+    }
 }
+
