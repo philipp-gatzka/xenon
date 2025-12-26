@@ -18,3 +18,7 @@ jobs:
           distribution: 'temurin'
       - name: Build with Gradle
         run: ./gradlew clean build publish
+        env:
+          USERNAME: ${{ github.actor }}
+          PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+
